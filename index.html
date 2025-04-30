@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeSync - هماهنگی زندگی</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
+    <style>
+        body {
+            font-family: 'Vazir', Arial, sans-serif;
+            margin: 0;
+            direction: rtl;
+            background-color: #FFFFFF;
+            opacity: 1 !important;
+            color: #000000;
+        }
+        .header {
+            background-color: #A3CFFA;
+            color: #000000;
+            padding: 40px;
+            text-align: center;
+            opacity: 1 !important;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .header p {
+            font-size: 1.2em;
+        }
+        .content {
+            text-align: center;
+            padding: 20px;
+            opacity: 1 !important;
+        }
+        .content p:last-child {
+            color: #A3CFFA;
+            font-weight: bold;
+        }
+        .content p {
+            margin: 15px 0 !important;
+        }
+        .signup-form {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #FFE4E9;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .signup-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            color: #000000;
+        }
+        .signup-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #A3CFFA;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+        }
+        .signup-form button:hover {
+            background-color: #8bb7f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>LifeSync</h1>
+        <p>زندگیت رو با برنامه‌ریزی هوشمند هماهنگ کن!</p>
+    </div>
+    <div class="content">
+        <h2>ثبت‌نام در LifeSync</h2>
+        <div class="signup-form">
+            <form action="register.php" method="POST">
+                <input type="text" name="name" placeholder="نام و نام خانوادگی" required>
+                <input type="email" name="email" placeholder="ایمیل" required>
+                <input type="password" name="password" placeholder="رمز عبور" required>
+                <button type="submit">ثبت‌نام و رفتن به تودولیست</button>
+            </form>
+        </div>
+        <h2>چرا LifeSync؟</h2>
+        <p>برنامه‌ریزی روزانه، رژیم غذایی، مدیریت مالی و سلامت، همه در یکجا.</p>
+        <p>با کالری‌شمار هوشمند، رژیم غذاییت رو آسون‌تر مدیریت کن!</p>
+    </div>
+</body>
+</html>

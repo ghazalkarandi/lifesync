@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeSync - Todo List</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
+    <style>
+        body {
+            font-family: 'Vazir', Arial, sans-serif;
+            margin: 0;
+            direction: rtl;
+            background-color: #FFFFFF;
+            text-align: center;
+            padding: 20px;
+            opacity: 1 !important;
+            color: #000000;
+        }
+        .header {
+            background-color: #A3CFFA;
+            color: #000000;
+            padding: 20px;
+            text-align: center;
+            opacity: 1 !important;
+        }
+        .todo-container {
+            max-width: 500px;
+            margin: 20px auto;
+            opacity: 1 !important;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 70%;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: #000000;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #FFC1CC;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #ffabb7;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #FFE4E9;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #000000;
+        }
+        .delete-btn {
+            background-color: #A3CFFA;
+            padding: 5px 10px;
+        }
+        .delete-btn:hover {
+            background-color: #8bb7f0;
+        }
+        .back-button {
+            display: inline-block;
+            background-color: #356589;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .back-button:hover {
+            background-color: #2a506f;
+        }
+        .completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>LifeSync - Todo List</h1>
+        <p>کارهای روزانه‌ت رو اینجا مدیریت کن!</p>
+        <a href="index.html" class="back-button">برگشت به صفحه اصلی</a>
+    </div>
+    <div class="todo-container">
+        <input type="text" id="todoInput" placeholder="یه کار جدید وارد کن...">
+        <button onclick="addTodo()">اضافه کن</button>
+        <ul id="todoList"></ul>
+    </div>
+    <script>
+        // لود تسک‌ها از Local Storage
+        let todos = JSON.parse(localStorage.getItem("todos")) || [];
+
+        // نمایش تسک‌ها
+        function renderTodos() {
+            let todoList = document.getElementById("todoList");
+            todoList.innerHTML = "";
+            todos.forEach((todo, index) => {
+                let li = document.createElement("li");
+                li.innerHTML = `
+                    <div>
+                        <input type="checkbox" onchange="toggleComplete(${index})" ${todo.completed ? "checked" : ""}>
+                        <span class="${todo.completed ? "completed" : ""}">${todo.text}</span>
+                    </div>
+                    <button class="delete-btn" onclick="deleteTodo(${index})">حذف</button>
+                `;
+                todoList.appendChild(li);
+            });
+        }
+
+        // اضافه کردن تسک
+        function addTodo() {
+            let todoInput = document.getElementById("todoInput");
+            let todoText = todoInput.value.trim();
+
+            if (todoText !== "") {
+                todos.push({ text: todoText, completed: false });
+                localStorage.setItem("todos", JSON.stringify(todos));
+                renderTodos();
+                todoInput.value = "";
+            }
+        }
+
+        // تغییر وضعیت کامل‌شده
+        function toggleComplete(index) {
+            todos[index].completed = !todos[index].completed;
+            localStorage.setItem("todos", JSON.stringify(todos));
+            renderTodos();
+        }
+
+        // حذف تسک
+        function deleteTodo(index) {
+            todos.splice(index, 1);
+            localStorage.setItem("todos", JSON.stringify(todos));
+            renderTodos();
+        }
+
+        // افزودن قابلیت Enter
+        document.getElementById("todoInput").addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                addTodo();
+            }
+        });
+
+        // لود تسک‌ها موقع بارگذاری صفحه
+        window.onload = renderTodos;
+    </script>
+</body>
+</html>
